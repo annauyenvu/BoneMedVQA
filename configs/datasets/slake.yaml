@@ -1,0 +1,14 @@
+# SLAKE — bilingual Med-VQA (check HF / original license)
+name: slake
+license: check_source
+source_url: https://huggingface.co/datasets/BoKelvin/SLAKE
+task: medical_vqa
+modality: radiology_mixed
+notes: >
+  Not bone-specific. Useful for open-answer / bilingual experiments.
+
+paths:
+  annotation_out: data/processed/slake/annotations.jsonl
+
+split:
+  strategy: official

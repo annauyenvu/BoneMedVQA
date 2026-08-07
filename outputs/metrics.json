@@ -1,0 +1,79 @@
+{
+  "accuracy": 0.1875,
+  "precision_macro": 0.026785714285714284,
+  "recall_macro": 0.14285714285714285,
+  "macro_f1": 0.045112781954887216,
+  "weighted_f1": 0.05921052631578947,
+  "confusion_matrix": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      5
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3
+    ]
+  ],
+  "n": 16,
+  "auroc": 0.5894058322629752,
+  "ece": 0.044749907217919827,
+  "trainable_params": 2048775,
+  "checkpoint": "C:\\Users\\Admin\\Documents\\JOB\\deadlineBaoUyen\\BoneMedVQA\\outputs\\checkpoints\\best.pt",
+  "split": "test",
+  "warning": "Metrics are only meaningful after real training on licensed data."
+}

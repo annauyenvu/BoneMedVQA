@@ -1,0 +1,14 @@
+# VQA-RAD — general radiology VQA (check HF / original license)
+name: vqa_rad
+license: check_source
+source_url: https://huggingface.co/datasets/flaviagiammarino/vqa-rad
+task: medical_vqa
+modality: radiology_mixed
+notes: >
+  Not bone-specific. Useful for transfer / open-answer eval. Verify license.
+
+paths:
+  annotation_out: data/processed/vqa_rad/annotations.jsonl
+
+split:
+  strategy: official

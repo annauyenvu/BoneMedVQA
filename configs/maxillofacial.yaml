@@ -1,0 +1,100 @@
+# Maxillofacial deployment profile — V + T + L + Knowledge Graph
+experiment:
+  name: maxillofacial_vqa
+  seed: 42
+  profile: maxillofacial
+
+device:
+  prefer_cuda: true
+  allow_cpu: true
+
+data:
+  annotation_path: data/processed/maxillofacial_annotations.jsonl
+  image_root: data/images
+  mask_root: data/masks/maxillofacial
+  num_workers: 2
+  patient_level_split: true
+
+model:
+  name: bonemedvqa
+  use_visual_prompt: true
+  use_textual_prompt: true
+  use_latent_prompt: true
+  fusion: cross_attention
+  visual_encoder:
+    backbone: tiny_cnn
+    pretrained: false
+    freeze: false
+    image_size: 224
+    hidden_dim: 256
+  text_encoder:
+    backbone: tiny_text
+    pretrained: false
+    freeze: false
+    max_length: 128
+    hidden_dim: 256
+  visual_prompt:
+    types: [mask, box, roi]
+    precompute: true
+    cache_dir: data/cache/masks/maxillofacial
+    segmentor: heuristic
+  textual_prompt:
+    include_task: true
+    include_anatomy: true
+    include_abnormality: true
+    include_output_format: true
+    require_abstention_instruction: true
+    language: vi
+  latent_prompt:
+    enabled: true
+    num_tokens: 16
+    num_layers: 2
+    num_heads: 4
+    dropout: 0.1
+    concept_bank: true
+    consistency_loss: cosine
+  closed_head:
+    num_classes: null
+    dropout: 0.2
+  open_head:
+    enabled: true
+    mode: template
+
+train:
+  epochs: 8
+  batch_size: 8
+  lr: 1.0e-3
+  weight_decay: 0.01
+  grad_clip: 1.0
+  amp: false
+  log_every: 10
+  val_every: 1
+
+loss:
+  classification: cross_entropy
+  lambda_classification: 1.0
+  lambda_generation: 0.3
+  lambda_alignment: 0.1
+  lambda_latent: 0.2
+  lambda_localization: 0.1
+
+calibration:
+  enabled: true
+  confidence_threshold: 0.55
+  temperature: 1.0
+
+knowledge_graph:
+  enabled: true
+  language: vi
+  ontology: maxillofacial
+
+inference:
+  backend: local
+  use_knowledge_graph: true
+
+output:
+  dir: outputs/maxillofacial
+  checkpoint_dir: outputs/maxillofacial/checkpoints
+  log_dir: outputs/maxillofacial/logs
+  prediction_dir: outputs/maxillofacial/predictions
+  save_best_metric: macro_f1

@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+.env
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (do not commit patient images / raw datasets)
+data/raw/**
+data/processed/**
+data/images/**
+data/masks/**
+data/annotations/**
+data/cache/**
+!data/**/.gitkeep
+
+# Model outputs / large artifacts
+outputs/checkpoints/**
+outputs/logs/**
+outputs/predictions/**
+outputs/figures/**
+outputs/ablation/**
+!outputs/**/.gitkeep
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+*.onnx
+
+# Secrets
+.env
+*.pem
+credentials*
+secrets*
+
+# Experiment tracking
+wandb/
+runs/
+lightning_logs/
+
+# Docker
+*.log

@@ -1,0 +1,24 @@
+# Latent-prompt-only ablation
+defaults:
+  - baseline
+
+experiment:
+  name: latent_prompt
+
+model:
+  use_visual_prompt: false
+  use_textual_prompt: false
+  use_latent_prompt: true
+  fusion: cross_attention
+  latent_prompt:
+    enabled: true
+    num_tokens: 16
+    num_layers: 2
+    num_heads: 4
+    dropout: 0.1
+    concept_bank: true
+    consistency_loss: cosine
+
+loss:
+  lambda_classification: 1.0
+  lambda_latent: 0.3

@@ -1,0 +1,34 @@
+# Dataset adapter config — FracAtlas (verify CC-BY-4.0 before download/use)
+name: fracatlas
+license: CC-BY-4.0
+license_url: https://creativecommons.org/licenses/by/4.0/
+source_url: https://figshare.com/articles/dataset/The_dataset_of_X-ray_images_of_bone_fractures/22363012
+task: fracture_detection
+modality: musculoskeletal_xray
+notes: >
+  User must accept license terms before downloading. Do not redistribute
+  without complying with original license. Prefer patient-level split.
+
+paths:
+  raw_root: data/raw/fracatlas
+  annotation_out: data/processed/fracatlas/annotations.jsonl
+  image_out: data/images/fracatlas
+
+split:
+  strategy: patient_level
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  seed: 42
+
+qa:
+  synthetic: true
+  templates:
+    - question: "Is there a fracture?"
+      answer_from: label_abnormal
+      question_type: closed
+      answer_type: yes_no
+    - question: "Is the study normal?"
+      answer_from: label_normal
+      question_type: closed
+      answer_type: yes_no

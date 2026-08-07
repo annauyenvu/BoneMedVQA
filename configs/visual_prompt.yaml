@@ -1,0 +1,20 @@
+# Visual-prompt-only ablation
+defaults:
+  - baseline
+
+experiment:
+  name: visual_prompt
+
+model:
+  use_visual_prompt: true
+  use_textual_prompt: false
+  use_latent_prompt: false
+  visual_prompt:
+    types: [mask, box, contour, blurred_background, unicolor]
+    precompute: true
+    cache_dir: data/cache/masks
+    segmentor: heuristic  # heuristic | sam_med2d | medsam | gt_mask
+  fusion: cross_attention
+  local_global:
+    enabled: true
+    roi_size: 112

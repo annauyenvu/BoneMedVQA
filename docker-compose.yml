@@ -1,0 +1,21 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - BONEMEDVQA_CONFIG=/app/configs/lightweight.yaml
+      - BONEMEDVQA_CHECKPOINT=/app/outputs/checkpoints/best.pt
+    volumes:
+      - ./outputs:/app/outputs
+      - ./data:/app/data
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000
+
+  demo:
+    build: .
+    ports:
+      - "7860:7860"
+    volumes:
+      - ./outputs:/app/outputs
+      - ./data:/app/data
+    command: python demo/gradio_app.py

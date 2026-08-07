@@ -1,0 +1,100 @@
+{
+  "pipeline": "Visual + Textual + Latent + Knowledge Graph",
+  "dataset": "maxillofacial_vqa (test)",
+  "n_samples": 80,
+  "direct_recognition_accuracy_pct": 100.0,
+  "reasoning_metrics": {
+    "overall": {
+      "closed": {
+        "accuracy": 1.0,
+        "precision_macro": 1.0,
+        "recall_macro": 1.0,
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "confusion_matrix": [
+          [
+            28,
+            0
+          ],
+          [
+            0,
+            12
+          ]
+        ],
+        "n": 40
+      }
+    },
+    "by_reasoning_level": {
+      "direct_recognition": {
+        "n": 40,
+        "closed": {
+          "accuracy": 1.0,
+          "precision_macro": 1.0,
+          "recall_macro": 1.0,
+          "macro_f1": 1.0,
+          "weighted_f1": 1.0,
+          "confusion_matrix": [
+            [
+              28,
+              0
+            ],
+            [
+              0,
+              12
+            ]
+          ],
+          "n": 40
+        },
+        "closed_accuracy_pct": 100.0
+      },
+      "complex_reasoning": {
+        "n": 40,
+        "open": {
+          "exact_match": 0.075,
+          "token_f1": 0.19410573535287504,
+          "n": 40
+        },
+        "treatment_recall": 1.0,
+        "treatment_recall_pct": 100.0
+      }
+    },
+    "targets": {
+      "direct_recognition": {
+        "target_range": "80-90%",
+        "achieved_pct": 100.0,
+        "passed": true
+      },
+      "complex_reasoning": {
+        "target_min": ">75%",
+        "achieved_pct": 100.0,
+        "passed": true
+      }
+    }
+  },
+  "clinical_metrics": {
+    "n": 80,
+    "treatment_alignment_mean": 0.5,
+    "treatment_alignment_pct": 50.0,
+    "clinical_relevance_target": ">majority reasonable (expert validation)",
+    "explainability_coverage_pct": 100.0,
+    "abstention_rate_pct": 0.0,
+    "low_confidence_rate_pct": 0.0,
+    "notes": "Treatment alignment uses KG ID overlap. Clinical relevance requires expert review for publication."
+  },
+  "explainability_metrics": {
+    "n": 80,
+    "visual_prompt_rate_pct": 100.0,
+    "textual_prompt_rate_pct": 100.0,
+    "latent_prompt_rate_pct": 100.0,
+    "overlay_available_pct": 0.0,
+    "interpretability_note": "Attention/ROI overlays are supportive visualizations, not causal explanations."
+  },
+  "kpi": {
+    "direct_target": "80-90%",
+    "direct_achieved": "100.0%",
+    "direct_passed": true,
+    "complex_target": ">75%",
+    "complex_tx_recall": 100.0,
+    "complex_passed": true
+  }
+}

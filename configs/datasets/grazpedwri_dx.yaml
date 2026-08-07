@@ -1,0 +1,34 @@
+# Dataset adapter config — GRAZPEDWRI-DX (pediatric wrist; check CC-BY-4.0)
+name: grazpedwri_dx
+license: CC-BY-4.0
+license_url: https://creativecommons.org/licenses/by/4.0/
+source_url: https://figshare.com/articles/dataset/GRAZPEDWRI-DX/16624407
+task: pediatric_wrist_fracture
+modality: wrist_xray
+notes: >
+  Pediatric data — extra care for de-identification. Patient-level split required.
+  Verify figshare / paper terms before use.
+
+paths:
+  raw_root: data/raw/grazpedwri_dx
+  annotation_out: data/processed/grazpedwri_dx/annotations.jsonl
+  image_out: data/images/grazpedwri_dx
+
+split:
+  strategy: patient_level
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  seed: 42
+
+qa:
+  synthetic: true
+  templates:
+    - question: "Is there evidence of a fracture?"
+      answer_from: label_abnormal
+      question_type: closed
+      answer_type: yes_no
+    - question: "Is there displacement?"
+      answer_from: displacement
+      question_type: closed
+      answer_type: yes_no

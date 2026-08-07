@@ -1,0 +1,64 @@
+# Binary yes/no direct recognition on maxillofacial X-rays
+experiment:
+  name: maxillofacial_binary
+  seed: 42
+  profile: maxillofacial
+
+device:
+  prefer_cuda: true
+  allow_cpu: true
+
+data:
+  annotation_path: data/processed/maxillofacial_binary.jsonl
+  image_root: data/images
+  mask_root: data/masks/maxillofacial
+  num_workers: 2
+  patient_level_split: true
+
+model:
+  name: bonemedvqa
+  use_visual_prompt: true
+  use_textual_prompt: true
+  use_latent_prompt: true
+  fusion: cross_attention
+  visual_encoder:
+    backbone: tiny_cnn
+    pretrained: false
+    image_size: 224
+    hidden_dim: 256
+  text_encoder:
+    backbone: tiny_text
+    max_length: 64
+    hidden_dim: 256
+  visual_prompt:
+    segmentor: heuristic
+  textual_prompt:
+    language: vi
+  latent_prompt:
+    enabled: true
+    num_tokens: 8
+    num_layers: 1
+    num_heads: 4
+  open_head:
+    enabled: false
+
+train:
+  epochs: 12
+  batch_size: 8
+  lr: 2.0e-3
+  weight_decay: 0.01
+  early_stopping_patience: 4
+
+loss:
+  classification: cross_entropy
+  lambda_classification: 1.0
+  lambda_latent: 0.1
+
+knowledge_graph:
+  enabled: true
+  language: vi
+
+output:
+  dir: outputs/maxillofacial_binary
+  checkpoint_dir: outputs/maxillofacial_binary/checkpoints
+  log_dir: outputs/maxillofacial_binary/logs

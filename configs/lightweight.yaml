@@ -1,0 +1,98 @@
+# Lightweight profile for limited GPU / CPU smoke training
+experiment:
+  name: lightweight
+  seed: 42
+  profile: lightweight
+
+device:
+  prefer_cuda: true
+  allow_cpu: true
+
+data:
+  annotation_path: data/processed/annotations.jsonl
+  image_root: data/images
+  mask_root: data/masks
+  num_workers: 0
+  patient_level_split: true
+
+model:
+  name: bonemedvqa
+  use_visual_prompt: true
+  use_textual_prompt: true
+  use_latent_prompt: true
+  fusion: cross_attention
+  visual_encoder:
+    backbone: tiny_cnn
+    pretrained: false
+    freeze: true
+    image_size: 224
+    hidden_dim: 256
+    lora: false
+  text_encoder:
+    backbone: tiny_text
+    pretrained: false
+    freeze: true
+    max_length: 64
+    hidden_dim: 256
+  visual_prompt:
+    types: [mask, box, blurred_background]
+    precompute: true
+    cache_dir: data/cache/masks
+    segmentor: heuristic
+  textual_prompt:
+    include_task: true
+    include_anatomy: true
+    include_abnormality: true
+    include_output_format: true
+    require_abstention_instruction: true
+  latent_prompt:
+    enabled: true
+    num_tokens: 8
+    num_layers: 1
+    num_heads: 4
+    dropout: 0.1
+    concept_bank: true
+    consistency_loss: cosine
+  local_global:
+    enabled: true
+    roi_size: 112
+  closed_head:
+    num_classes: null
+    dropout: 0.1
+  open_head:
+    enabled: true
+    mode: template  # template | flan_t5_small
+    backbone: flan_t5_small
+    max_new_tokens: 64
+
+train:
+  epochs: 3
+  batch_size: 4
+  lr: 2.0e-4
+  weight_decay: 0.01
+  grad_clip: 1.0
+  amp: true
+  accumulate_grad_batches: 4
+  early_stopping_patience: 3
+  log_every: 5
+  val_every: 1
+
+loss:
+  classification: cross_entropy
+  lambda_classification: 1.0
+  lambda_generation: 0.2
+  lambda_alignment: 0.1
+  lambda_latent: 0.2
+  lambda_localization: 0.1
+
+calibration:
+  enabled: true
+  confidence_threshold: 0.55
+  temperature: 1.0
+
+output:
+  dir: outputs
+  checkpoint_dir: outputs/checkpoints
+  log_dir: outputs/logs
+  prediction_dir: outputs/predictions
+  save_best_metric: macro_f1

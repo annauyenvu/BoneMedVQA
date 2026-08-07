@@ -1,0 +1,112 @@
+[
+  {
+    "epoch": 0,
+    "train_loss": 0.765688244253397,
+    "val_accuracy": 0.65,
+    "val_precision_macro": 0.325,
+    "val_recall_macro": 0.5,
+    "val_macro_f1": 0.3939393939393939,
+    "val_weighted_f1": 0.5121212121212121,
+    "val_confusion_matrix": [
+      [
+        0,
+        7
+      ],
+      [
+        0,
+        13
+      ]
+    ],
+    "val_n": 20,
+    "val_auroc": 0.43956043956043955,
+    "val_loss": 0.8249519467353821
+  },
+  {
+    "epoch": 1,
+    "train_loss": 0.4613528177142143,
+    "val_accuracy": 0.65,
+    "val_precision_macro": 0.325,
+    "val_recall_macro": 0.5,
+    "val_macro_f1": 0.3939393939393939,
+    "val_weighted_f1": 0.5121212121212121,
+    "val_confusion_matrix": [
+      [
+        0,
+        7
+      ],
+      [
+        0,
+        13
+      ]
+    ],
+    "val_n": 20,
+    "val_auroc": 0.543956043956044,
+    "val_loss": 1.2980315287907918
+  },
+  {
+    "epoch": 2,
+    "train_loss": 0.4087102538906038,
+    "val_accuracy": 0.65,
+    "val_precision_macro": 0.325,
+    "val_recall_macro": 0.5,
+    "val_macro_f1": 0.3939393939393939,
+    "val_weighted_f1": 0.5121212121212121,
+    "val_confusion_matrix": [
+      [
+        0,
+        7
+      ],
+      [
+        0,
+        13
+      ]
+    ],
+    "val_n": 20,
+    "val_auroc": 0.554945054945055,
+    "val_loss": 1.0314855178197224
+  },
+  {
+    "epoch": 3,
+    "train_loss": 0.43506909906864166,
+    "val_accuracy": 0.65,
+    "val_precision_macro": 0.325,
+    "val_recall_macro": 0.5,
+    "val_macro_f1": 0.3939393939393939,
+    "val_weighted_f1": 0.5121212121212121,
+    "val_confusion_matrix": [
+      [
+        0,
+        7
+      ],
+      [
+        0,
+        13
+      ]
+    ],
+    "val_n": 20,
+    "val_auroc": 0.5054945054945055,
+    "val_loss": 0.9207413196563721
+  },
+  {
+    "epoch": 4,
+    "train_loss": 0.36969920899719,
+    "val_accuracy": 0.65,
+    "val_precision_macro": 0.325,
+    "val_recall_macro": 0.5,
+    "val_macro_f1": 0.3939393939393939,
+    "val_weighted_f1": 0.5121212121212121,
+    "val_confusion_matrix": [
+      [
+        0,
+        7
+      ],
+      [
+        0,
+        13
+      ]
+    ],
+    "val_n": 20,
+    "val_auroc": 0.5164835164835165,
+    "val_loss": 1.2095439632733662
+  }
+]

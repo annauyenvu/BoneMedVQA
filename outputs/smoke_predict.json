@@ -1,0 +1,29 @@
+{
+  "health": {
+    "status": "ok",
+    "device": "cpu",
+    "model_loaded": true,
+    "warning": "Kết quả chỉ có mục đích nghiên cứu và tham khảo, không thay thế kết luận của bác sĩ hoặc chuyên gia y tế. / For research use only. Not a medical diagnosis."
+  },
+  "predict": {
+    "answer": "Không đủ độ tin cậy để đưa ra câu trả lời. Vui lòng kiểm tra lại ảnh hoặc tham khảo ý kiến chuyên gia y tế.",
+    "answer_type": "closed",
+    "confidence": 0.2534034252166748,
+    "anatomy": null,
+    "prompt_type": "automatic",
+    "mask_url": "outputs\\figures\\explanations\\0125bcf8-cbbf-438e-ac5c-da0732ad8388_mask.png",
+    "heatmap_url": "outputs\\figures\\explanations\\0125bcf8-cbbf-438e-ac5c-da0732ad8388_overlay.png",
+    "abstained": true,
+    "warning": "Kết quả chỉ có mục đích nghiên cứu và tham khảo, không thay thế kết luận của bác sĩ hoặc chuyên gia y tế. / For research use only. Not a medical diagnosis.",
+    "request_id": "0125bcf8-cbbf-438e-ac5c-da0732ad8388",
+    "raw_label": "yes",
+    "open_answer": null,
+    "activated_prompts": {
+      "visual": false,
+      "textual": true,
+      "latent": false
+    },
+    "session_id": null,
+    "history": null
+  }
+}

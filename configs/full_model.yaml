@@ -1,0 +1,111 @@
+# Full model profile (requires GPU + pretrained HF weights)
+experiment:
+  name: full_model
+  seed: 42
+  profile: full
+
+device:
+  prefer_cuda: true
+  allow_cpu: false
+
+data:
+  annotation_path: data/processed/annotations.jsonl
+  image_root: data/images
+  mask_root: data/masks
+  num_workers: 4
+  patient_level_split: true
+
+model:
+  name: bonemedvqa
+  use_visual_prompt: true
+  use_textual_prompt: true
+  use_latent_prompt: true
+  fusion: cross_attention
+  visual_encoder:
+    backbone: timm_resnet18
+    pretrained: true
+    freeze: false
+    image_size: 224
+    hidden_dim: 512
+    lora: true
+    lora_r: 8
+    lora_alpha: 16
+  text_encoder:
+    backbone: bioclinicalbert
+    pretrained: true
+    freeze: false
+    max_length: 128
+    hidden_dim: 512
+  visual_prompt:
+    types: [mask, box, contour, blurred_background, unicolor, multicolor, roi]
+    precompute: true
+    cache_dir: data/cache/masks
+    segmentor: sam_med2d  # swap: medsam | sam | gt_mask | heuristic
+  textual_prompt:
+    include_task: true
+    include_anatomy: true
+    include_abnormality: true
+    include_output_format: true
+    require_abstention_instruction: true
+  latent_prompt:
+    enabled: true
+    num_tokens: 32
+    num_layers: 3
+    num_heads: 8
+    dropout: 0.1
+    concept_bank: true
+    consistency_loss: cosine
+  local_global:
+    enabled: true
+    roi_size: 160
+  token_compression:
+    enabled: true
+    ratio: 4
+  closed_head:
+    num_classes: null
+    dropout: 0.2
+  open_head:
+    enabled: true
+    mode: flan_t5
+    backbone: google/flan-t5-base
+    max_new_tokens: 128
+    lora: true
+    load_in_8bit: false
+
+train:
+  epochs: 20
+  batch_size: 8
+  lr: 5.0e-5
+  weight_decay: 0.01
+  grad_clip: 1.0
+  amp: true
+  accumulate_grad_batches: 2
+  early_stopping_patience: 7
+  log_every: 20
+  val_every: 1
+
+loss:
+  classification: focal
+  focal_gamma: 2.0
+  lambda_classification: 1.0
+  lambda_generation: 0.5
+  lambda_alignment: 0.2
+  lambda_latent: 0.3
+  lambda_localization: 0.2
+
+calibration:
+  enabled: true
+  confidence_threshold: 0.6
+  temperature: 1.0
+
+knowledge_graph:
+  enabled: true  # maxillofacial treatment pathways via TreatmentAdvisor
+  language: vi
+  ontology: maxillofacial
+
+output:
+  dir: outputs
+  checkpoint_dir: outputs/checkpoints
+  log_dir: outputs/logs
+  prediction_dir: outputs/predictions
+  save_best_metric: macro_f1

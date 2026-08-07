@@ -1,0 +1,206 @@
+{
+  "dataset": "maxillofacial_vqa",
+  "split": "test",
+  "n_samples": 80,
+  "checkpoint": "C:\\Users\\Admin\\Documents\\JOB\\deadlineBaoUyen\\BoneMedVQA\\outputs\\maxillofacial\\checkpoints\\best.pt",
+  "knowledge_graph_enabled": true,
+  "reasoning_metrics": {
+    "overall": {
+      "closed": {
+        "accuracy": 0.3,
+        "precision_macro": 0.04285714285714286,
+        "recall_macro": 0.14285714285714285,
+        "macro_f1": 0.06593406593406594,
+        "weighted_f1": 0.13846153846153847,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            7,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            12,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            3,
+            0
+          ]
+        ],
+        "n": 40,
+        "auroc": null
+      }
+    },
+    "by_reasoning_level": {
+      "direct_recognition": {
+        "n": 40,
+        "closed": {
+          "accuracy": 0.3,
+          "precision_macro": 0.04285714285714286,
+          "recall_macro": 0.14285714285714285,
+          "macro_f1": 0.06593406593406594,
+          "weighted_f1": 0.13846153846153847,
+          "confusion_matrix": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              7,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              3,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              8,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              6,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              12,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              3,
+              0
+            ]
+          ],
+          "n": 40,
+          "auroc": null
+        },
+        "closed_accuracy_pct": 30.0
+      },
+      "complex_reasoning": {
+        "n": 40,
+        "open": {
+          "exact_match": 0.075,
+          "token_f1": 0.13412970832879303,
+          "n": 40
+        },
+        "treatment_recall": 0.6,
+        "treatment_recall_pct": 60.0
+      }
+    },
+    "targets": {
+      "direct_recognition": {
+        "target_range": "80-90%",
+        "achieved_pct": 30.0,
+        "passed": false
+      },
+      "complex_reasoning": {
+        "target_min": ">75%",
+        "achieved_pct": 60.0,
+        "passed": false
+      }
+    }
+  },
+  "clinical_metrics": {
+    "n": 80,
+    "treatment_alignment_mean": 0.3,
+    "treatment_alignment_pct": 30.0,
+    "clinical_relevance_target": ">majority reasonable (expert validation)",
+    "explainability_coverage_pct": 100.0,
+    "abstention_rate_pct": 100.0,
+    "low_confidence_rate_pct": 100.0,
+    "notes": "Treatment alignment uses KG ID overlap. Clinical relevance requires expert review for publication."
+  },
+  "explainability_metrics": {
+    "n": 80,
+    "visual_prompt_rate_pct": 100.0,
+    "textual_prompt_rate_pct": 100.0,
+    "latent_prompt_rate_pct": 100.0,
+    "overlay_available_pct": 0.0,
+    "interpretability_note": "Attention/ROI overlays are supportive visualizations, not causal explanations."
+  },
+  "profile": "maxillofacial"
+}

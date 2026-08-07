@@ -1,0 +1,24 @@
+# Synthetic demo dataset for smoke tests (no external download)
+name: synthetic_demo
+license: Apache-2.0
+task: closed_vqa_demo
+modality: synthetic_xray_like
+notes: >
+  Generated locally for unit/smoke tests. Not for publishing research metrics.
+
+paths:
+  raw_root: data/raw/synthetic
+  annotation_out: data/processed/annotations.jsonl
+  image_out: data/images
+
+split:
+  strategy: patient_level
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+  seed: 42
+
+qa:
+  synthetic: true
+  n_patients: 20
+  images_per_patient: 2

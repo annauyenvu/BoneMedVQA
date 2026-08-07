@@ -1,0 +1,86 @@
+{
+  "dataset": "maxillofacial_vqa",
+  "split": "test",
+  "n_samples": 20,
+  "checkpoint": "C:\\Users\\Admin\\Documents\\JOB\\deadlineBaoUyen\\BoneMedVQA\\outputs\\maxillofacial_binary\\checkpoints\\best.pt",
+  "knowledge_graph_enabled": true,
+  "reasoning_metrics": {
+    "overall": {
+      "closed": {
+        "accuracy": 0.6,
+        "precision_macro": 0.3,
+        "recall_macro": 0.5,
+        "macro_f1": 0.375,
+        "weighted_f1": 0.45,
+        "confusion_matrix": [
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            12
+          ]
+        ],
+        "n": 20,
+        "auroc": 0.46875000000000006
+      }
+    },
+    "by_reasoning_level": {
+      "direct_recognition": {
+        "n": 20,
+        "closed": {
+          "accuracy": 0.6,
+          "precision_macro": 0.3,
+          "recall_macro": 0.5,
+          "macro_f1": 0.375,
+          "weighted_f1": 0.45,
+          "confusion_matrix": [
+            [
+              0,
+              8
+            ],
+            [
+              0,
+              12
+            ]
+          ],
+          "n": 20,
+          "auroc": 0.46875000000000006
+        },
+        "closed_accuracy_pct": 60.0
+      }
+    },
+    "targets": {
+      "direct_recognition": {
+        "target_range": "80-90%",
+        "achieved_pct": 60.0,
+        "passed": false
+      },
+      "complex_reasoning": {
+        "target_min": ">75%",
+        "achieved_pct": null,
+        "passed": false
+      }
+    }
+  },
+  "clinical_metrics": {
+    "n": 20,
+    "treatment_alignment_mean": 0.0,
+    "treatment_alignment_pct": 0.0,
+    "clinical_relevance_target": ">majority reasonable (expert validation)",
+    "explainability_coverage_pct": 100.0,
+    "abstention_rate_pct": 0.0,
+    "low_confidence_rate_pct": 0.0,
+    "notes": "Treatment alignment uses KG ID overlap. Clinical relevance requires expert review for publication."
+  },
+  "explainability_metrics": {
+    "n": 20,
+    "visual_prompt_rate_pct": 100.0,
+    "textual_prompt_rate_pct": 100.0,
+    "latent_prompt_rate_pct": 100.0,
+    "overlay_available_pct": 0.0,
+    "interpretability_note": "Attention/ROI overlays are supportive visualizations, not causal explanations."
+  },
+  "profile": "maxillofacial"
+}

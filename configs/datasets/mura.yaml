@@ -1,0 +1,31 @@
+# Dataset adapter config — MURA (Stanford ML Group; check current terms)
+name: mura
+license: research_use_only
+license_url: https://stanfordmlgroup.github.io/competitions/mura/
+source_url: https://stanfordmlgroup.github.io/competitions/mura/
+task: abnormality_detection
+modality: musculoskeletal_xray
+notes: >
+  MURA requires agreeing to Stanford dataset terms. Not for clinical use.
+  Split by patient ID from official CSV. Never mix patients across splits.
+
+paths:
+  raw_root: data/raw/mura
+  annotation_out: data/processed/mura/annotations.jsonl
+  image_out: data/images/mura
+
+split:
+  strategy: official_or_patient_level
+  seed: 42
+
+qa:
+  synthetic: true
+  templates:
+    - question: "Is there an abnormality in this radiograph?"
+      answer_from: label_abnormal
+      question_type: closed
+      answer_type: yes_no
+    - question: "What body part is shown?"
+      answer_from: anatomy
+      question_type: closed
+      answer_type: anatomy

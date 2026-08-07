@@ -1,0 +1,18 @@
+# Textual-prompt-only ablation
+defaults:
+  - baseline
+
+experiment:
+  name: textual_prompt
+
+model:
+  use_visual_prompt: false
+  use_textual_prompt: true
+  use_latent_prompt: false
+  textual_prompt:
+    include_task: true
+    include_anatomy: true
+    include_abnormality: true
+    include_output_format: true
+    require_abstention_instruction: true
+    language: en

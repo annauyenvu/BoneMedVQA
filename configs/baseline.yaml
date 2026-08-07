@@ -1,0 +1,81 @@
+# BoneMedVQA baseline — no visual/latent prompt; closed-answer classification
+experiment:
+  name: baseline
+  seed: 42
+  profile: lightweight
+
+device:
+  prefer_cuda: true
+  allow_cpu: true
+
+data:
+  annotation_path: data/processed/annotations.jsonl
+  image_root: data/images
+  mask_root: data/masks
+  num_workers: 0
+  patient_level_split: true
+
+model:
+  name: bonemedvqa
+  use_visual_prompt: false
+  use_textual_prompt: true
+  use_latent_prompt: false
+  fusion: concat
+  visual_encoder:
+    backbone: tiny_cnn  # tiny_cnn | vit_tiny | timm_resnet18 | clip_vit_b32
+    pretrained: false
+    freeze: false
+    image_size: 224
+    hidden_dim: 256
+    lora: false
+  text_encoder:
+    backbone: tiny_text  # tiny_text | roberta_base | bioclinicalbert
+    pretrained: false
+    freeze: false
+    max_length: 64
+    hidden_dim: 256
+  latent_prompt:
+    enabled: false
+    num_tokens: 8
+    num_layers: 2
+    num_heads: 4
+    dropout: 0.1
+  closed_head:
+    num_classes: null  # inferred from label vocab
+    dropout: 0.1
+  open_head:
+    enabled: false
+    backbone: flan_t5_small
+
+train:
+  epochs: 5
+  batch_size: 8
+  lr: 1.0e-4
+  weight_decay: 0.01
+  grad_clip: 1.0
+  amp: true
+  accumulate_grad_batches: 1
+  early_stopping_patience: 5
+  log_every: 10
+  val_every: 1
+  resume: null
+
+loss:
+  classification: cross_entropy
+  lambda_classification: 1.0
+  lambda_generation: 0.0
+  lambda_alignment: 0.0
+  lambda_latent: 0.0
+  lambda_localization: 0.0
+
+calibration:
+  enabled: true
+  confidence_threshold: 0.55
+  temperature: 1.0
+
+output:
+  dir: outputs
+  checkpoint_dir: outputs/checkpoints
+  log_dir: outputs/logs
+  prediction_dir: outputs/predictions
+  save_best_metric: macro_f1

@@ -1,0 +1,49 @@
+# Maxillofacial (jaw/skull) X-ray VQA dataset — research demo
+# Supports direct recognition + complex reasoning questions with KG labels
+name: maxillofacial_vqa
+license: research_demo
+task: maxillofacial_vqa
+modality: panoramic_cephalometric_like
+anatomy_domain: maxillofacial
+notes: >
+  Synthetic maxillofacial X-ray-like images with labeled QA, reasoning levels,
+  and treatment references for BoneMedVQA benchmark. Replace with licensed
+  clinical data (OMFS archives, hospital datasets) before publication.
+
+paths:
+  raw_root: data/raw/maxillofacial
+  annotation_out: data/processed/maxillofacial_annotations.jsonl
+  image_out: data/images/maxillofacial
+  kg_reference: src/bonemedvqa/knowledge_graph/graph_store.py
+
+split:
+  strategy: patient_level
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+  seed: 42
+
+qa:
+  synthetic: true
+  n_patients: 50
+  images_per_patient: 2
+  reasoning_levels:
+    - direct_recognition
+    - complex_reasoning
+  anatomies:
+    - mandible
+    - maxilla
+    - tmj
+    - zygoma
+    - dental
+  abnormalities:
+    - fracture
+    - dislocation
+    - impacted_tooth
+    - periapical_lesion
+    - normal
+
+deployment:
+  profile: maxillofacial
+  enable_knowledge_graph: true
+  default_language: vi
